@@ -23,6 +23,9 @@ from sklearn.model_selection import train_test_split
 
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 
 
 #############################################################################################
@@ -131,8 +134,11 @@ class DataIngestion:
         
 
 
-# Exemple d'utilisation
-if __name__ == "__main__":
-    ingestion = DataIngestion()
-    train_path, test_path = ingestion.initiate_data_ingestion()
-    print(f"Data ingestion completed. Train data path: {train_path}, Test data path: {test_path}")
+if __name__=="__main__":
+    obj=DataIngestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+    print(f"Data ingestion completed. Train data path: {train_data}, Test data path: {test_data}")
+
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+    
